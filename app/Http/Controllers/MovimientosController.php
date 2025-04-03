@@ -23,11 +23,11 @@ class MovimientosController extends Controller
     {
         $prestamos = Prestamo::join("empleado", "prestamo.fk_id_empleado", "=", "empleado.id_empleado")->get();
         
-        return view('movimientos/prestamosGet', [
+        return view('Movimientos/prestamosGet', [
             'prestamos' => $prestamos,
             "breadcrumbs" => [
                 "Inicio" => url("/"),
-                "Préstamos" => url("/movimientos/prestamos")
+                "Préstamos" => url("/Movimientos/prestamos")
             ]
         ]);
     }
@@ -41,12 +41,12 @@ class MovimientosController extends Controller
         $empleados=array_column($empleados,null,"id_empleado");
         $prestamosvigentes=array_column($prestamosvigentes,null,"fk_id_empleado");
         $empleados=array_diff_key($empleados,$prestamosvigentes);
-        return view('movimientos/prestamosAgregarGet', [
+        return view('Movimientos/prestamosAgregarGet', [
             "empleados" => $empleados,
             "breadcrumbs" => [
                 "Inicio" => url("/"),
-                "Préstamos" => url("/movimientos/prestamos"),
-                "Agregar" => url("/movimientos/prestamos/agregar")
+                "Préstamos" => url("/Movimientos/prestamos"),
+                "Agregar" => url("/Movimientos/prestamos/agregar")
             ]
         ]);
     }
@@ -93,7 +93,7 @@ class MovimientosController extends Controller
 
         $prestamo->save();
 
-        return redirect("/movimientos/prestamos"); // Redirige al listado de préstamos
+        return redirect("/Movimientos/prestamos"); // Redirige al listado de préstamos
     }
 
     public function abonosGet($id_prestamo): View
@@ -103,13 +103,13 @@ class MovimientosController extends Controller
         // Obtener el préstamo con su relación de empleado
         $prestamo = Prestamo::with('empleado')->where("id_prestamo", $id_prestamo)->first();
 
-        return view('movimientos/abonosGet', [
+        return view('Movimientos/abonosGet', [
             'abonos' => $abonos,
             'prestamo' => $prestamo,
             'breadcrumbs' => [
                 "Inicio" => url("/"),
-                "Prestamos" => url("/movimientos/prestamos"),
-                "Abonos" => url("/movimientos/prestamos/abonos"),
+                "Prestamos" => url("/Movimientos/prestamos"),
+                "Abonos" => url("/Movimientos/prestamos/abonos"),
             ]
         ]);
     }
@@ -140,7 +140,7 @@ class MovimientosController extends Controller
         $saldo_pendiente = 0;
         }
 
-        return view('movimientos/abonosAgregarGet', [
+        return view('Movimientos/abonosAgregarGet', [
             'prestamo' => $prestamo,
             'num_abono' => $num_abono,
             'monto_capital' => $monto_capital,
@@ -149,7 +149,7 @@ class MovimientosController extends Controller
             'saldo_pendiente' => $saldo_pendiente,
             "breadcrumbs" => [
                 "Inicio" => url("/"),
-                "Prestamos" => url("/movimientos/prestamos"),
+                "Prestamos" => url("/Movimientos/prestamos"),
                 "Abonos" => url("/prestamos/{$prestamo->id_prestamo}/abonos"),
                 "Agregar" => "",
             ]
@@ -196,12 +196,12 @@ class MovimientosController extends Controller
 
         $prestamos = Prestamo::where("prestamo.fk_id_empleado", $id_empleado)->get();
 
-        return view('movimientos/empleadosPrestamosGet', [
+        return view('Movimientos/empleadosPrestamosGet', [
             "empleado" => $empleado,
             'prestamos' => $prestamos,
             "breadcrumbs" => [
                 "Inicio" => url("/"),
-                "Prestamos" => url("/movimientos/prestamos")
+                "Prestamos" => url("/Movimientos/prestamos")
             ]
         ]);
     }
