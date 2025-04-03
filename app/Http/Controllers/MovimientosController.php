@@ -23,11 +23,11 @@ class MovimientosController extends Controller
     {
         $prestamos = Prestamo::join("empleado", "prestamo.fk_id_empleado", "=", "empleado.id_empleado")->get();
         
-        return view('movimientos/prestamosGet', [
+        return view('Movimientos/prestamosGet', [
             'prestamos' => $prestamos,
             "breadcrumbs" => [
                 "Inicio" => url("/"),
-                "Préstamos" => url("/movimientos/prestamos")
+                "Préstamos" => url("/Movimientos/prestamos")
             ]
         ]);
     }
