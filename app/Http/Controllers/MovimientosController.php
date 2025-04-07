@@ -93,7 +93,7 @@ class MovimientosController extends Controller
 
         $prestamo->save();
 
-        return redirect("/Movimientos/prestamos"); // Redirige al listado de préstamos
+        return redirect("/movimientos/prestamos"); // Redirige al listado de préstamos
     }
 
     public function abonosGet($id_prestamo): View
